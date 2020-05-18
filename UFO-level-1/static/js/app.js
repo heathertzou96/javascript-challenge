@@ -3,9 +3,9 @@ var tableData = data;
 
 // YOUR CODE HERE!
 // looping through array of objects and printing them out in console
-//tableData.forEach(function(ufo) {
-    //console.log(ufo);
-//});
+// tableData.forEach(function(ufo) {
+//     console.log(ufo);
+// });
 
 // appending table to webpage and adding new rows of data for each UFO sighting
 
@@ -24,6 +24,8 @@ var tableData = data;
 
 var tbody = d3.select("tbody"); 
 
+
+
 tableData.forEach((ufo) => {
     var row = tbody.append("tr");
     Object.entries(ufo).forEach(([key, value]) => {
@@ -31,6 +33,8 @@ tableData.forEach((ufo) => {
         cell.text(value);
     }); 
 });
+
+
 
 // listening for event based on date input
 var button = d3.select("#filter-btn");
@@ -48,8 +52,15 @@ function filterTable() {
     var filteredData = tableData.filter(ufo => ufo.datetime === inputValue);
     console.log(filteredData);
 
-    
-    
+    tbody.html("");
+
+    filteredData.forEach((ufo) => {
+        var row = tbody.append("tr");
+        Object.entries(ufo).forEach(([key, value]) => {
+            var cell = row.append("td");
+            cell.text(value);
+        });
+    });
     //updateTable(filteredData);
     
     //return filteredData;
